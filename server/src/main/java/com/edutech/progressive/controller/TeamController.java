@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.sql.SQLException;
 import java.util.List;
 @RestController @RequestMapping("/team")
@@ -23,6 +22,7 @@ public class TeamController {
     TeamServiceImplJdbc teamServiceImplJdbc;
     public ResponseEntity<List<Team>> getAllTeams() {
         return null;
+        //test
     }
     
     @GetMapping("/{teamId}")
