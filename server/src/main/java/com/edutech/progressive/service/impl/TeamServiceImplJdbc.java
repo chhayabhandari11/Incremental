@@ -6,10 +6,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.edutech.progressive.dao.TeamDAO;
 import com.edutech.progressive.entity.Team;
 import com.edutech.progressive.service.TeamService;
 
+@Service
 public class TeamServiceImplJdbc implements TeamService {
 
     public TeamServiceImplJdbc() {
@@ -28,7 +31,6 @@ public class TeamServiceImplJdbc implements TeamService {
     @Override
     public int addTeam(Team team) throws SQLException {
         return teamDAO.addTeam(team);
-       //  return (result >= 0) ? 1 : -1;
     }
 
     @Override
@@ -40,6 +42,7 @@ public class TeamServiceImplJdbc implements TeamService {
         //         return  arg0.getTeamName().compareTo(arg1.getTeamName());
         //     }
         // });
+        Collections.sort(list);
         return list;
 
     }

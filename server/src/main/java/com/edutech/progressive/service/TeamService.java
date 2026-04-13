@@ -5,6 +5,9 @@ import com.edutech.progressive.entity.Team;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+
 public interface TeamService {
 
     List<Team> getAllTeams()throws SQLException;
@@ -21,7 +24,7 @@ public interface TeamService {
         return null;
     }
 
-    default void updateTeam(Team team) throws SQLException{}
+    default void updateTeam(Team team,int teamId) throws SQLException{}
 
     default void deleteTeam(int teamId)throws SQLException {}
 

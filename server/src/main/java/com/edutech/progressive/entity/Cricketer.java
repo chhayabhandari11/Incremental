@@ -111,7 +111,7 @@ public void setNationality(String nationality) {
 
 @Override
 public int compareTo(Cricketer Obj) {
-    return Integer.compare(this.getExperience(),Obj.getExperience());
+    return Integer.compare(this.experience,Obj.experience);
 }
 
 

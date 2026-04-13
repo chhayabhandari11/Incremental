@@ -23,6 +23,7 @@ public class CricketerServiceImplArraylist implements CricketerService {
        cricketers.add(cricketer);
        return cricketers.size();
     }
+
     // public Comparator<Cricketer> cricketerComparator = new Comparator<Cricketer>() {
 
     //     @Override
@@ -35,6 +36,7 @@ public class CricketerServiceImplArraylist implements CricketerService {
     @Override
     public List<Cricketer> getAllCricketersSortedByExperience() {
         // Collections.sort(cricketers, cricketerComparator);
+        Collections.sort(cricketers);
         return cricketers;
        
     }
