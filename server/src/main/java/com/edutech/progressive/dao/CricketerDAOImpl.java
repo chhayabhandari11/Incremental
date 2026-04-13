@@ -40,6 +40,7 @@ public class CricketerDAOImpl implements CricketerDAO {
                ResultSet rs = ps.getGeneratedKeys();
            if(rs.next())
            {
+            cricketer.setCricketerId(rs.getInt(1));
              int key =rs.getInt(1);
              return key;
             }

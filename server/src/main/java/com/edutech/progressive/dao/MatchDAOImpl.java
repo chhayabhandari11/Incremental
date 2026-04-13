@@ -37,6 +37,7 @@ public class MatchDAOImpl implements MatchDAO {
                ResultSet rs = ps.getGeneratedKeys();
            if(rs.next())
            {
+             match.setMatchId(rs.getInt(1));
              int key =rs.getInt(1);
              return key;
             }

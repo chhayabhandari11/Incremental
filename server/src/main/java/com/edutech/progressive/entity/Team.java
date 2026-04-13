@@ -66,7 +66,7 @@ public class Team implements Comparable<Team> {
     }
     @Override
     public int compareTo(Team Obj) {
-        return this.getTeamName().compareTo(Obj.getTeamName());
+        return this.teamName.compareToIgnoreCase(Obj.teamName);
     }
     
 }

@@ -28,6 +28,7 @@ public class TeamServiceImplJdbc implements TeamService {
     @Override
     public int addTeam(Team team) throws SQLException {
         return teamDAO.addTeam(team);
+       //  return (result >= 0) ? 1 : -1;
     }
 
     @Override
