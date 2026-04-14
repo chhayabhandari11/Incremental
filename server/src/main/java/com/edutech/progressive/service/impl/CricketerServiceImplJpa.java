@@ -39,7 +39,6 @@ public class CricketerServiceImplJpa  implements CricketerService  {
     }
     return cricketerRepository.save(cricketer).getCricketerId();
 
-
     }
 
     @Override
