@@ -24,7 +24,7 @@ public interface TeamService {
         return null;
     }
 
-    default void updateTeam(Team team,int teamId) throws SQLException{}
+    default void updateTeam(Team team) throws SQLException{}
 
     default void deleteTeam(int teamId)throws SQLException {}
 
