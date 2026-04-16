@@ -1,7 +1,7 @@
 package com.edutech.progressive.entity;
 
 import java.util.List;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GeneratorType;
 
 @Entity
-
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class Team implements Comparable<Team> {
 
 

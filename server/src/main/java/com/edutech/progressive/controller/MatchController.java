@@ -1,141 +1,84 @@
+
 package com.edutech.progressive.controller;
 
 import com.edutech.progressive.entity.Match;
-import com.edutech.progressive.service.impl.MatchServiceImplJpa;
-
+import com.edutech.progressive.exception.NoMatchesFoundException;
+import com.edutech.progressive.service.MatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.SQLException;
 import java.util.List;
+import org.springframework.web.bind.annotation.*;
+
 @RestController
-
-@RequestMapping("/match")
-
+@RequestMapping("/")
 public class MatchController {
 
     @Autowired
+    private MatchService matchService;
 
-    MatchServiceImplJpa matchServiceImplJpa;
-
-    @GetMapping
-
+    @GetMapping("/match")
     public ResponseEntity<List<Match>> getAllMatches() {
-
         try {
-
-            List<Match> matchList = matchServiceImplJpa.getAllMatches();
-
-            return new ResponseEntity<>(matchList, HttpStatus.OK);
-
+            List<Match> matches = matchService.getAllMatches();
+            return new ResponseEntity<>(matches, HttpStatus.OK);
         } catch (SQLException e) {
-
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-
         }
-
     }
 
-    @GetMapping("/{matchId}")
-
+    @GetMapping("/match/{matchId}")
     public ResponseEntity<Match> getMatchById(@PathVariable int matchId) {
-
         try {
-
-            Match match = matchServiceImplJpa.getMatchById(matchId);
-
+            Match match = matchService.getMatchById(matchId);
             return new ResponseEntity<>(match, HttpStatus.OK);
-
         } catch (SQLException e) {
-
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-
         }
-
     }
 
-    @PostMapping
-
+    @PostMapping("/match")
     public ResponseEntity<Integer> addMatch(@RequestBody Match match) {
-
         try {
-
-            int matchId = matchServiceImplJpa.addMatch(match);
-
+            Integer matchId = matchService.addMatch(match);
             return new ResponseEntity<>(matchId, HttpStatus.CREATED);
-
         } catch (SQLException e) {
-
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-
         }
-
     }
 
-    @PutMapping("/{matchId}")
-
+    @PutMapping("/match/{matchId}")
     public ResponseEntity<Void> updateMatch(@PathVariable int matchId, @RequestBody Match match) {
-
         try {
-
             match.setMatchId(matchId);
-
-            matchServiceImplJpa.updateMatch(match);
-
+            matchService.updateMatch(match);
             return new ResponseEntity<>(HttpStatus.OK);
-
         } catch (SQLException e) {
-
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-
         }
-
     }
 
-    @DeleteMapping("/{matchId}")
-
+    @DeleteMapping("/match/{matchId}")
     public ResponseEntity<Void> deleteMatch(@PathVariable int matchId) {
-
         try {
-
-            matchServiceImplJpa.deleteMatch(matchId);
-
+            matchService.deleteMatch(matchId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
         } catch (SQLException e) {
-
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-
         }
-
     }
 
-        @GetMapping("/status/{status}")
-
+    @GetMapping("/match/status/{status}")
     public ResponseEntity<?> getAllMatchesByStatus(@PathVariable String status) {
-
         try {
-
-            List<Match> matchList = matchServiceImplJpa.getAllMatchesByStatus(status);
-
-            return new ResponseEntity<>(matchList, HttpStatus.OK);
-
-        }  catch (Exception e) {
-
-            return new ResponseEntity<>("An unexpected error occurred: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);  
-
+            List<Match> matches = matchService.getAllMatchesByStatus(status);
+            return new ResponseEntity<>(matches, HttpStatus.OK);
+        } catch (NoMatchesFoundException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
-
 }
- 
