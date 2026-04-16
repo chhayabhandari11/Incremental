@@ -40,7 +40,6 @@ public class TeamServiceImplJpa implements TeamService  {
     public Team getTeamById(int teamId) throws SQLException{
         return teamRepository.findByTeamId(teamId);
     }
-
     public  void updateTeam(int teamId, Team team) throws SQLException
     {
         Team t= teamRepository.findById(teamId).orElse(null);
@@ -50,7 +49,6 @@ public class TeamServiceImplJpa implements TeamService  {
         t.setEstablishmentYear(team.getEstablishmentYear());
         teamRepository.save(t);
         
-
     }
 
     public void deleteTeam(int teamId) throws SQLException
