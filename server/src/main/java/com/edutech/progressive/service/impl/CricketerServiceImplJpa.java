@@ -93,4 +93,5 @@ public class CricketerServiceImplJpa implements CricketerService {
     public List<Cricketer> getCricketersByTeam(int teamId) throws SQLException {
         return cricketerRepository.findByTeam_TeamId(teamId);
     }
+    
 }
