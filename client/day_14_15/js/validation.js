@@ -1,3 +1,13 @@
+// function login() {    
+// }
+
+// function register() {
+    // Frontend validation for registration form
+    // Validate email format
+    // Validate username (no special characters)
+    // Validate password (at least 8 characters, one capital letter, and one numeric)
+// }
+// module.exports = { login, register };
 
 function login() {
     const usernameElement = document.getElementById("loginUsername");
@@ -8,8 +18,8 @@ function login() {
 
     if (username === "") {
         alert("Username is required");
-        return true;
-        //abc
+        return false;
+        //abc-
     }
 
     if (password === "") {
